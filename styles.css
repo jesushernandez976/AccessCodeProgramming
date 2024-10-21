@@ -1,0 +1,205 @@
+body {
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+    font-family: 'Space Mono', sans-serif;
+    height: 20vh;
+}
+
+.video {
+    background-color: transparent;!important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Stack video and <p> vertically */
+}
+
+.video video {
+    width: 740px; /* Set a default width for larger screens */
+    height: auto; /* Ensure the height adjusts to maintain aspect ratio */
+    background-color: transparent;!important;
+    transition: transform 0.3s ease; /* Smooth transition for scaling */
+
+}
+
+.video video:hover {
+    transform: scale(1.30);
+}
+
+
+p {
+    color: #4476b0;
+    font-weight: 900;
+    font-size: 1rem;
+    margin: 10px 0 0 0; /* Add some space above the text */
+    display: block; /* Ensure <p> appears as a block */
+    text-align: center; /* Center the text */
+    font-family: 'Space Mono', sans-serif;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    margin: 0px;
+}
+
+.left-white {
+    fill: white;
+}
+
+.left-black {
+    fill: black;
+}
+
+.right {
+
+}
+
+.left-arrow {
+    margin-right: 450px;
+    z-index: 99;
+    position: absolute;
+    cursor: pointer;
+    transition: transform 0.1s ease;
+}
+
+.right-arrow {
+    margin-left: 450px;
+    z-index: 99;
+    position: absolute;
+    cursor: pointer;
+    transition: transform 0.1s ease;
+}
+
+.left-arrow:active, .right-arrow:active {
+    transform: scale(0.9); /* Slightly shrink the arrow when clicked */
+}
+
+.hiddenClothing {
+    display: none;
+}
+
+#countdown {
+    text-align: center;
+}
+
+#timer {
+    margin-top: 50px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.btn-custom {
+    color: #3b5e8d; /* Text color */
+    font-family: 'Space Mono', sans-serif !important; /* Use specified font */
+    border: none; /* Outline color */
+    font-weight: 600;
+    animation: blink .8s infinite; /* Faster blink animation */
+    transition: transform 0.2s; /* Smooth transition for scaling */
+    background-color: transparent;
+    margin-top: 60px;
+}
+
+.btn-custom:hover {
+    background-color: #3b5e8d !important; /* Background color on hover */
+    color: white !important; /* Text color on hover */
+}
+
+.words-container {
+    text-align: center; /* Center the container */
+    margin-top: 0px; /* Add some space above the button */
+}
+
+#countdown {
+    margin-bottom: 10px; /* Add space between button and countdown */
+}
+
+@keyframes blink {
+    0%, 0% {
+        background-color: transparent; /* Starting color */
+    }
+    0% {
+        background-color: #3b5e8d; /* Color during the blink */
+    }
+}
+
+.night-mode {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    cursor: pointer;
+}
+
+.night-mode:hover .icon {
+    stroke: #f39c12; /* Change this to your desired hover color */
+    transition: stroke 0.3s; /* Smooth transition effect */
+}
+
+.dayMode {
+    display: none;
+}
+
+.openDayMode {}
+
+.day-mode {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    cursor: pointer;
+}
+
+.day-mode:hover .icon {
+    stroke: #f39c12; /* Change this to your desired hover color */
+    transition: stroke 0.3s; /* Smooth transition effect */
+}
+
+/* Media query for smaller screens */
+@media (max-width: 490px) {
+    .container {
+        flex-direction: column; /* Stack arrows and video vertically */
+        align-items: center; /* Center content horizontally */
+    }
+
+    .video {
+        width: 100vw; /* Ensure video container uses 90% of viewport width */
+        margin: 20px 0; /* Add margin for spacing */
+        display: flex;
+        justify-content: center; /* Center video */
+        align-items: center; /* Center content vertically */
+    }
+
+    .video video {
+        width: 100%; /* Set video width to 100% of the container */
+        height: auto;
+        margin-top: 80px; /* Maintain aspect ratio */
+    }
+
+    p {
+        font-size: 12px;
+        margin-top: 20px; /* Add some space above the text */
+    }
+
+    .left-arrow,
+    .right-arrow {
+        width: 20px; /* Arrow width */
+        height: 20px; /* Arrow height */
+        margin: 10px;
+        margin-top: 200px; /* Add margin to arrows */
+    }
+
+    .left-arrow {
+        margin-right: 280px; /* Add spacing between left arrow and video */
+    }
+
+    .right-arrow {
+        margin-left: 280px; /* Add spacing between right arrow and video */
+    }
+
+    .button-custom {
+        transform: scale(0.9); /* Scale down to 90% of original size */
+    }
+}
