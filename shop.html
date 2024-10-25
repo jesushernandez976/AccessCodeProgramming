@@ -11,72 +11,78 @@
 </head>
 <body>
     <div class="container">
+        <!-- Left Arrow -->
         <div class="left-arrow">
-            <!-- Left arrow SVG -->
-            <svg class="left" xmlns="http://www.w3.org/2000/svg" width="20" height="20" transform="rotate(180)">
-                <path d="M10 20A10 10 0 1 0 0 10a10 10 0 0 0 10 10zM8.711 4.3l5.7 5.766L8.7 15.711l-1.4-1.422 4.289-4.242-4.3-4.347z"/>
-            </svg>
-                               
-            
+            <svg class="left" xmlns="http://www.w3.org/2000/svg" width="20" height="20"><path 
+                d="M10 20A10 10 0 1 0 0 10a10 10 0 0 0 10 10zm1.289-15.7 1.422 1.4-4.3 4.344 4.289 4.245-1.4 1.422-5.714-5.648z"/>
+            </svg>     
         </div>
 
+        <!-- Video 1 -->
         <div id="video1" class="video">
             <video autoplay muted loop playsinline>
                 <source src="whiteoutput_prores-hevc-safari.mp4" type="video/mp4; codecs=hvc1">
                 <source src="output3.webm" type="video/webm">
                 Your browser does not support the video tag, or the video format is not supported.
             </video>
-            <p class="pvid1">WHITE & BLUE ACP 001</p>
         </div>
 
-        <div id="video2" class="video">
+        <!-- Video 2 -->
+        <div id="video2" class="video" style="display: none;">
             <video autoplay muted loop playsinline>
                 <source src="blackoutput_prores-hevc-safari.mp4" type="video/mp4; codecs=hvc1"> 
                 <source src="output2.webm" type="video/webm">
                 Your browser does not support the video tag.
             </video>
-            <p class="pvid2">BLACK & BLUE ACP 001</p>
         </div>
 
-        <div id="video3" class="video">
+        <!-- Video 3 -->
+        <div id="video3" class="video" style="display: none;">
             <video autoplay muted loop playsinline>
                 <source src="blueoutput_prores-hevc-safari.mp4" type="video/mp4; codecs=hvc1">
                 <source src="blue no back.webm" type="video/webm">
                 Your browser does not support the video tag.
             </video>
-            <p class="pvid2">BLUE & WHITE ACP 001</p>
         </div>
 
-
-
+        <!-- Right Arrow -->
         <div class="right-arrow">
-            <!-- Right arrow SVG -->
             <svg class="right" xmlns="http://www.w3.org/2000/svg" width="20" height="20">
                 <path d="M10 20A10 10 0 1 0 0 10a10 10 0 0 0 10 10zM8.711 4.3l5.7 5.766L8.7 15.711l-1.4-1.422 4.289-4.242-4.3-4.347z"/>
             </svg>
         </div>
     </div>
 
-    <div id="countdown">
-        <a href="index.html">
-        <p id="timer">000: 000: 000: 000</p>
-        </a>
+    <!-- Dynamic Video Title -->
+    <p class="pvid1">BLUE & WHITE ACP 001</p>
+
+    <!-- Price Display -->
+    <div class="price" id="amountDisplay">$0.00 USD</div>
+
+    <!-- Sizes for Videos (same class, different links set by JS) -->
+    <div class="sizes">
+        <a href="#" class="size-letter">S</a>
+        <a href="#" class="size-letter">M</a>
+        <a href="#" class="size-letter">L</a>
+        <a href="#" class="size-letter">XL</a>
     </div>
 
+    <!-- Night and Day Mode Toggles -->
     <div class="night-mode">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sun" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z"/>
             <path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
             <path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7" />
-          </svg>
+        </svg>
     </div>
     <div class="day-mode dayMode">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-moon" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z"/>
             <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
-          </svg>
+        </svg>
     </div>
     
+    <!-- External JavaScript file -->
     <script src="app.js"></script>
 </body>
 </html>
