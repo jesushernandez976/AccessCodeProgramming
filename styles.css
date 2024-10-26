@@ -231,18 +231,18 @@ p {
 }
 
 
-.quantity1 label,
-.size1 label,
-#quantity1,
-#size1,
-#addToCartButton1 {
+.quantity1 label, .quantity2 label, .quantity3 label,
+.size1 label, .size2 label, .size3 label, 
+#quantity1,#quantity2,#quantity3,
+#size1,#size2,#size3,
+#addToCartButton1,#addToCartButton2, #addToCartButton3 {
     color: #4476b0; /* Use the same color as your page */
     font-weight: 900; /* Match the font weight */
     font-family: 'Space Mono', sans-serif; /* Ensure consistent font family */
 }
 
-#quantity1,
-#size1 {
+#quantity1,#quantity2,#quantity3,
+#size1,#size2,#size3 {
     width: 50px; /* Compact width */
     padding: 3px; /* Padding for input */
     font-size: 0.9em; /* Font size for inputs */
@@ -253,7 +253,7 @@ p {
 
 }
 
-#addToCartButton1 {
+#addToCartButton1, #addToCartButton2, #addToCartButton3{
     padding: 3px; /* Adjust padding */
     font-size: 0.9em; /* Font size for button */
     cursor: pointer; /* Pointer cursor */
@@ -263,11 +263,16 @@ p {
     border-radius: 5px;
 }
 
-#addToCartButton1:hover {
+#addToCartButton1:hover, #addToCartButton2:hover, #addToCartButton3:hover {
     background-color: skyblue; /* Change background on hover */
     color: white; /* Change text color on hover */
     border: 2px solid skyblue;
 
+}
+
+#quantity1:hover, #quantity2:hover, #quantity3:hover, #size1:hover, #size2:hover, #size3:hover {
+    border: 2px solid skyblue;
+    color: skyblue;
 }
 
 

@@ -7,17 +7,18 @@ document.addEventListener('DOMContentLoaded', function() {
     var leftButton = document.querySelector(".left");
     var rightButton = document.querySelector(".right");
     var videos = document.querySelectorAll(".video");
+    var products = document.querySelectorAll(".product"); // Select product elements
     var currentVideoIndex = 0;
     var titleElement = document.querySelector('.pvid1');
     var sizeLetters = document.querySelectorAll('.size-letter');
-    
+
     // Title and size links
     var titles = [
         "WHITE AND BLUE ACP 001",
         "BLACK AND BLUE ACP 001",
         "BLUE AND WHITE ACP 001"
     ];
-    
+
     var sizeLinks = [
         { S: "page1.html", M: "page2.html", L: "page3.html", XL: "page4.html" },
         { S: "page5.html", M: "page6.html", L: "page7.html", XL: "page8.html" },
@@ -32,6 +33,8 @@ document.addEventListener('DOMContentLoaded', function() {
     var hoverSizeSound = new Audio('./audio/click2.mp3');
     var clickSizeSound = new Audio('./audio/click1t.mp3');
     var pageChangeSound = new Audio('./audio/page-transition.mp3');
+    var hoverInputSound = new Audio('./audio/click2.mp3'); // Sound for input hover
+    var clickInputSound = new Audio('./audio/click1t.mp3'); // Sound for input click
 
     // Set volume for all sounds
     hoverSound.volume = 0.3;
@@ -40,7 +43,9 @@ document.addEventListener('DOMContentLoaded', function() {
     clickModeSound.volume = 0.2;
     hoverSizeSound.volume = 0.3;
     clickSizeSound.volume = 0.3;
-    pageChangeSound.volume = 0.5;
+    hoverInputSound.volume = 0.3; // Volume for input hover sound
+    clickInputSound.volume = 0.3; // Volume for input click sound
+    pageChangeSound.volume = 0.3;
 
     // Flag to track audio initialization
     let audioInitialized = false;
@@ -87,6 +92,8 @@ document.addEventListener('DOMContentLoaded', function() {
         clickModeSound.load();
         hoverSizeSound.load();
         clickSizeSound.load();
+        hoverInputSound.load(); // Preload input sounds
+        clickInputSound.load(); // Preload input sounds
         pageChangeSound.load();
     }
     preloadSounds();
@@ -112,6 +119,23 @@ document.addEventListener('DOMContentLoaded', function() {
             addHoverSound(letter, hoverSizeSound);
             addClickSound(letter, clickSizeSound);
         });
+
+        // Add hover and click sound event listeners to "Add to Cart" buttons
+        var addToCartButtons = document.querySelectorAll('button[id^="addToCartButton"]');
+        addToCartButtons.forEach(button => {
+            addHoverSound(button, hoverSizeSound);
+            addClickSound(button, clickSizeSound);
+        });
+
+        // Add hover and click sound event listeners to quantity input
+        var quantityInput = document.getElementById('quantity1');
+        addHoverSound(quantityInput, hoverInputSound);
+        addClickSound(quantityInput, clickInputSound);
+
+        // Add hover and click sound event listeners to size select
+        var sizeSelect = document.getElementById('size1');
+        addHoverSound(sizeSelect, hoverSizeSound);
+        addClickSound(sizeSelect, clickSizeSound);
 
         document.removeEventListener('click', arguments.callee);
     });
@@ -148,20 +172,40 @@ document.addEventListener('DOMContentLoaded', function() {
             letter.style.display = "inline";
         });
     }
+
+    // Function to show the current video
+    function showVideo(index) {
+        videos.forEach((video, i) => {
+            video.style.display = i === index ? "block" : "none"; // Show the current video
+        });
+    }
+
+    // Function to show the current product
+    function showProduct(index) {
+        products.forEach((product, i) => {
+            product.style.display = i === index ? "block" : "none"; // Show the current product
+        });
+    }
+
+    // Update content initially
     updateContent(currentVideoIndex);
+    showVideo(currentVideoIndex);
+    showProduct(currentVideoIndex);
 
     // Manage video visibility and content update for arrow clicks
     rightArrow.addEventListener("click", function() {
-        videos[currentVideoIndex].style.display = "none";
         currentVideoIndex = (currentVideoIndex + 1) % videos.length;
-        videos[currentVideoIndex].style.display = "block";
+        console.log("Current Video Index (Right Click):", currentVideoIndex); // Debugging line
+        showVideo(currentVideoIndex);
+        showProduct(currentVideoIndex); // Also show the corresponding product
         updateContent(currentVideoIndex);
     });
 
     leftArrow.addEventListener("click", function() {
-        videos[currentVideoIndex].style.display = "none";
         currentVideoIndex = (currentVideoIndex - 1 + videos.length) % videos.length;
-        videos[currentVideoIndex].style.display = "block";
+        console.log("Current Video Index (Left Click):", currentVideoIndex); // Debugging line
+        showVideo(currentVideoIndex);
+        showProduct(currentVideoIndex); // Also show the corresponding product
         updateContent(currentVideoIndex);
     });
 
@@ -180,11 +224,12 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.style.background = "white";
         nightMode.classList.add("dayMode");
         dayMode.classList.remove("dayMode");
-        leftButton.classList.remove("left-white");
         leftButton.classList.add("left-black");
-        rightButton.classList.remove("left-white");
+        leftButton.classList.remove("left-white");
         rightButton.classList.add("left-black");
+        rightButton.classList.remove("left-white");
     });
+
 
     // Animate dollar amount display
     function animateDollarAmount(targetAmount, duration) {
