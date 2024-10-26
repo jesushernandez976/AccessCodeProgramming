@@ -7,10 +7,11 @@ document.addEventListener('DOMContentLoaded', function() {
     var leftButton = document.querySelector(".left");
     var rightButton = document.querySelector(".right");
     var videos = document.querySelectorAll(".video");
-    var products = document.querySelectorAll(".product"); // Select product elements
+    var products = document.querySelectorAll(".product");
     var currentVideoIndex = 0;
     var titleElement = document.querySelector('.pvid1');
     var sizeLetters = document.querySelectorAll('.size-letter');
+    var cartElement = document.querySelector(".cart"); // Select the cart element
 
     // Title and size links
     var titles = [
@@ -33,8 +34,8 @@ document.addEventListener('DOMContentLoaded', function() {
     var hoverSizeSound = new Audio('./audio/click2.mp3');
     var clickSizeSound = new Audio('./audio/click1t.mp3');
     var pageChangeSound = new Audio('./audio/page-transition.mp3');
-    var hoverInputSound = new Audio('./audio/click2.mp3'); // Sound for input hover
-    var clickInputSound = new Audio('./audio/click1t.mp3'); // Sound for input click
+    var hoverInputSound = new Audio('./audio/click2.mp3'); 
+    var clickInputSound = new Audio('./audio/click1t.mp3');
 
     // Set volume for all sounds
     hoverSound.volume = 0.3;
@@ -43,8 +44,8 @@ document.addEventListener('DOMContentLoaded', function() {
     clickModeSound.volume = 0.2;
     hoverSizeSound.volume = 0.3;
     clickSizeSound.volume = 0.3;
-    hoverInputSound.volume = 0.3; // Volume for input hover sound
-    clickInputSound.volume = 0.3; // Volume for input click sound
+    hoverInputSound.volume = 0.3;
+    clickInputSound.volume = 0.3;
     pageChangeSound.volume = 0.3;
 
     // Flag to track audio initialization
@@ -56,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
         audioInitialized = true;
     }
 
-    // Play sound on hover (disabled for screens <= 600px)
+    // Play sound on hover
     function addHoverSound(element, hoverAudio) {
         element.addEventListener("mouseenter", function() {
             if (audioInitialized && !preventHoverSound && window.innerWidth > 430) {
@@ -84,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Preload sounds to improve performance
+    // Preload sounds
     function preloadSounds() {
         hoverSound.load();
         clickSound.load();
@@ -92,13 +93,13 @@ document.addEventListener('DOMContentLoaded', function() {
         clickModeSound.load();
         hoverSizeSound.load();
         clickSizeSound.load();
-        hoverInputSound.load(); // Preload input sounds
-        clickInputSound.load(); // Preload input sounds
+        hoverInputSound.load();
+        clickInputSound.load();
         pageChangeSound.load();
     }
     preloadSounds();
 
-    // Initialize audio on the first interaction (click)
+    // Initialize audio on the first interaction
     document.addEventListener('click', function() {
         initAudio();
 
@@ -137,6 +138,10 @@ document.addEventListener('DOMContentLoaded', function() {
         addHoverSound(sizeSelect, hoverSizeSound);
         addClickSound(sizeSelect, clickSizeSound);
 
+        // Add hover and click sound event listeners to the cart element
+        addHoverSound(cartElement, hoverSizeSound);
+        addClickSound(cartElement, clickSizeSound);
+
         document.removeEventListener('click', arguments.callee);
     });
 
@@ -146,19 +151,19 @@ document.addEventListener('DOMContentLoaded', function() {
         pageChangeSound.play().then(() => {
             setTimeout(() => {
                 window.location.href = url;
-            }, 500); // Delay navigation by 500ms for sound to play
+            }, 500);
         }).catch(error => {
             console.error('Page change sound playback failed:', error);
-            window.location.href = url; // Fallback to navigate immediately if sound fails
+            window.location.href = url; 
         });
     }
 
     // Attach event listeners to size letters for page change with sound
     sizeLetters.forEach(letter => {
         letter.addEventListener('click', function(event) {
-            event.preventDefault(); // Prevent default navigation
-            var size = letter.textContent; // 'S', 'M', 'L', or 'XL'
-            var url = sizeLinks[currentVideoIndex][size]; // Get the corresponding link
+            event.preventDefault();
+            var size = letter.textContent;
+            var url = sizeLinks[currentVideoIndex][size];
             playPageChangeSoundAndNavigate(url);
         });
     });
@@ -176,14 +181,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // Function to show the current video
     function showVideo(index) {
         videos.forEach((video, i) => {
-            video.style.display = i === index ? "block" : "none"; // Show the current video
+            video.style.display = i === index ? "block" : "none"; 
         });
     }
 
     // Function to show the current product
     function showProduct(index) {
         products.forEach((product, i) => {
-            product.style.display = i === index ? "block" : "none"; // Show the current product
+            product.style.display = i === index ? "block" : "none"; 
         });
     }
 
@@ -195,17 +200,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // Manage video visibility and content update for arrow clicks
     rightArrow.addEventListener("click", function() {
         currentVideoIndex = (currentVideoIndex + 1) % videos.length;
-        console.log("Current Video Index (Right Click):", currentVideoIndex); // Debugging line
+        console.log("Current Video Index (Right Click):", currentVideoIndex);
         showVideo(currentVideoIndex);
-        showProduct(currentVideoIndex); // Also show the corresponding product
+        showProduct(currentVideoIndex);
         updateContent(currentVideoIndex);
     });
 
     leftArrow.addEventListener("click", function() {
         currentVideoIndex = (currentVideoIndex - 1 + videos.length) % videos.length;
-        console.log("Current Video Index (Left Click):", currentVideoIndex); // Debugging line
+        console.log("Current Video Index (Left Click):", currentVideoIndex);
         showVideo(currentVideoIndex);
-        showProduct(currentVideoIndex); // Also show the corresponding product
+        showProduct(currentVideoIndex);
         updateContent(currentVideoIndex);
     });
 
@@ -218,6 +223,8 @@ document.addEventListener('DOMContentLoaded', function() {
         leftButton.classList.remove("left-black");
         rightButton.classList.add("left-white");
         rightButton.classList.remove("left-black");
+        cartElement.classList.add("left-white");
+        cartElement.classList.remove("left-black");
     });
 
     nightMode.addEventListener("click", function() {
@@ -228,6 +235,8 @@ document.addEventListener('DOMContentLoaded', function() {
         leftButton.classList.remove("left-white");
         rightButton.classList.add("left-black");
         rightButton.classList.remove("left-white");
+        cartElement.classList.remove("left-white");
+        cartElement.classList.add("left-black");
     });
 
 

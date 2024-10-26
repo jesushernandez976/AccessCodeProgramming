@@ -275,6 +275,22 @@ p {
     color: skyblue;
 }
 
+.cart svg{
+    position: absolute;
+    height: 40px;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+    z-index: 4;
+
+}
+
+.cart svg:hover {
+    transition: stroke 0.3s;
+    fill: skyblue;
+    transform: scale(1.1)
+    
+}
 
 
 /* Media query for smaller screens */
