@@ -41,11 +41,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Set volume for light/dark mode sounds (separate volumes)
     hoverModeSound.volume = 0.2;
-    clickModeSound.volume = 0.5;
+    clickModeSound.volume = 0.2;
 
     // Set volume for size letter sounds
     hoverSizeSound.volume = 0.3;
-    clickSizeSound.volume = 0.5;
+    clickSizeSound.volume = 0.3;
 
     // Flag to track audio initialization
     let audioInitialized = false;
@@ -56,10 +56,10 @@ document.addEventListener('DOMContentLoaded', function() {
         audioInitialized = true;
     }
 
-    // Play sound on hover (mouseenter event for immediate sound)
+    // Play sound on hover (disabled when screen is <= 600px)
     function addHoverSound(element, hoverAudio) {
         element.addEventListener("mouseenter", function() {
-            if (audioInitialized && !preventHoverSound) {
+            if (audioInitialized && !preventHoverSound && window.innerWidth > 430) {
                 hoverAudio.currentTime = 0;
                 hoverAudio.play().catch(error => {
                     console.error('Hover sound playback failed:', error);
@@ -214,7 +214,3 @@ document.addEventListener('DOMContentLoaded', function() {
     // Call the animation function when the page loads
     animateDollarAmount(55, 1500); // Animate to USD $55.00 over 2 seconds
 });
-
-
-
-  
