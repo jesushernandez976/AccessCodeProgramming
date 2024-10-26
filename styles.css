@@ -305,6 +305,7 @@ p {
 }
 
 
+
 /* Media query for smaller screens */
 @media (max-width: 490px) {
     .container {
