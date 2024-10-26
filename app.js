@@ -4,8 +4,6 @@ document.addEventListener('DOMContentLoaded', function() {
     var rightArrow = document.querySelector(".right-arrow");
     var dayMode = document.querySelector(".night-mode");
     var nightMode = document.querySelector(".day-mode");
-    var leftButton = document.querySelector(".left");
-    var rightButton = document.querySelector(".right");
     var videos = document.querySelectorAll(".video");
     var products = document.querySelectorAll(".product");
     var currentVideoIndex = 0;
@@ -13,13 +11,12 @@ document.addEventListener('DOMContentLoaded', function() {
     var sizeLetters = document.querySelectorAll('.size-letter');
     var cartElement = document.querySelector(".cart");
 
-    // Title and size links
+    // Titles and size links
     var titles = [
         "WHITE AND BLUE ACP 001",
         "BLACK AND BLUE ACP 001",
         "BLUE AND WHITE ACP 001"
     ];
-
     var sizeLinks = [
         { S: "page1.html", M: "page2.html", L: "page3.html", XL: "page4.html" },
         { S: "page5.html", M: "page6.html", L: "page7.html", XL: "page8.html" },
@@ -48,7 +45,6 @@ document.addEventListener('DOMContentLoaded', function() {
     clickInputSound.volume = 0.3;
     pageChangeSound.volume = 0.4;
 
-    // Initialize audio and prevent hover overlap
     let audioInitialized = false;
     let preventHoverSound = false;
 
@@ -56,7 +52,6 @@ document.addEventListener('DOMContentLoaded', function() {
         audioInitialized = true;
     }
 
-    // Preload sounds
     function preloadSounds() {
         hoverSound.load();
         clickSound.load();
@@ -70,7 +65,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     preloadSounds();
 
-    // Play sound on hover
     function addHoverSound(element, hoverAudio) {
         element.addEventListener("mouseenter", function() {
             if (audioInitialized && !preventHoverSound && window.innerWidth > 430) {
@@ -80,7 +74,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Play sound on click
     function addClickSound(element, clickAudio) {
         element.addEventListener("click", function() {
             if (audioInitialized) {
@@ -92,7 +85,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Initialize sounds and add event listeners
+    // Add to Cart Functionality
+    function addToCart(product) {
+        console.log(`Added ${product} to the cart.`); // Debugging log
+        // You can implement your cart logic here
+    }
+
     initAudio();
     addHoverSound(leftArrow, hoverSound);
     addHoverSound(rightArrow, hoverSound);
@@ -103,28 +101,6 @@ document.addEventListener('DOMContentLoaded', function() {
     addHoverSound(nightMode, hoverModeSound);
     addClickSound(dayMode, clickModeSound);
     addClickSound(nightMode, clickModeSound);
-
-    sizeLetters.forEach(letter => {
-        addHoverSound(letter, hoverSizeSound);
-        addClickSound(letter, clickSizeSound);
-    });
-
-    var addToCartButtons = document.querySelectorAll('button[id^="addToCartButton"]');
-    addToCartButtons.forEach(button => {
-        addHoverSound(button, hoverSizeSound);
-        addClickSound(button, clickSizeSound);
-    });
-
-    var quantityInput = document.getElementById('quantity1');
-    addHoverSound(quantityInput, hoverInputSound);
-    addClickSound(quantityInput, clickInputSound);
-
-    var sizeSelect = document.getElementById('size1');
-    addHoverSound(sizeSelect, hoverSizeSound);
-    addClickSound(sizeSelect, clickSizeSound);
-
-    addHoverSound(cartElement, hoverSizeSound);
-    addClickSound(cartElement, clickSizeSound);
 
     // Play page change sound and navigate
     function playPageChangeSoundAndNavigate(url) {
@@ -137,17 +113,40 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Attach size link events
-    sizeLetters.forEach(letter => {
-        letter.addEventListener('click', function(event) {
-            event.preventDefault();
-            var size = letter.textContent;
-            var url = sizeLinks[currentVideoIndex][size];
-            playPageChangeSoundAndNavigate(url);
-        });
-    });
+    // Function to attach sounds to size and quantity elements
+    function attachCartAndQuantitySounds() {
+        // Attach sounds for quantity and size inputs
+        for (let i = 1; i <= 3; i++) {
+            const quantityInput = document.getElementById(`quantity${i}`);
+            const sizeSelect = document.getElementById(`size${i}`);
 
-    // Update content, video, and product display
+            if (quantityInput) {
+                addHoverSound(quantityInput, hoverInputSound);
+                addClickSound(quantityInput, clickInputSound);
+            }
+
+            if (sizeSelect) {
+                addHoverSound(sizeSelect, hoverSizeSound);
+                addClickSound(sizeSelect, clickSizeSound);
+            }
+        }
+
+        // Attach sounds for cart
+        addHoverSound(cartElement, hoverSizeSound);
+        addClickSound(cartElement, clickSizeSound);
+
+        // Add event listener for "Add to Cart" buttons
+        var addToCartButtons = document.querySelectorAll('button[id^="addToCartButton"]');
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                addToCart(titleElement.textContent); // Pass the title of the current product
+            });
+            addHoverSound(button, hoverSizeSound);
+            addClickSound(button, clickSizeSound);
+        });
+    }
+
+    // Update content function
     function updateContent(index) {
         titleElement.textContent = titles[index];
         sizeLetters.forEach(letter => {
@@ -155,6 +154,8 @@ document.addEventListener('DOMContentLoaded', function() {
             letter.setAttribute('href', sizeLinks[index][size]);
             letter.style.display = "inline";
         });
+        
+        attachCartAndQuantitySounds(); // Reattach sounds for updated elements
     }
 
     function showVideo(index) {
@@ -165,12 +166,10 @@ document.addEventListener('DOMContentLoaded', function() {
         products.forEach((product, i) => product.style.display = i === index ? "block" : "none");
     }
 
-    // Initialize video and product display
     updateContent(currentVideoIndex);
     showVideo(currentVideoIndex);
     showProduct(currentVideoIndex);
 
-    // Arrow navigation
     rightArrow.addEventListener("click", function() {
         currentVideoIndex = (currentVideoIndex + 1) % videos.length;
         showVideo(currentVideoIndex);
@@ -185,31 +184,16 @@ document.addEventListener('DOMContentLoaded', function() {
         updateContent(currentVideoIndex);
     });
 
-    // Light and dark mode toggle
     dayMode.addEventListener("click", function() {
         document.body.style.background = "black";
         dayMode.classList.add("dayMode");
         nightMode.classList.remove("dayMode");
-        leftButton.classList.add("left-white");
-        leftButton.classList.remove("left-black");
-        rightButton.classList.add("left-white");
-        rightButton.classList.remove("left-black");
-        cartElement.classList.add("left-white");
-        cartElement.classList.remove("left-black");
-
     });
 
     nightMode.addEventListener("click", function() {
         document.body.style.background = "white";
         nightMode.classList.add("dayMode");
         dayMode.classList.remove("dayMode");
-        leftButton.classList.add("left-black");
-        leftButton.classList.remove("left-white");
-        rightButton.classList.add("left-black");
-        rightButton.classList.remove("left-white");
-        cartElement.classList.remove("left-white");
-        cartElement.classList.add("left-black");
-
     });
 
     // Animate dollar amount display
