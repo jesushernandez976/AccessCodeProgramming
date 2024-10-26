@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
     clickSizeSound.volume = 0.3;
     hoverInputSound.volume = 0.3;
     clickInputSound.volume = 0.3;
-    pageChangeSound.volume = 0.3;
+    pageChangeSound.volume = 0.4;
 
     // Flag to track audio initialization
     let audioInitialized = false;

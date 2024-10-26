@@ -292,6 +292,18 @@ p {
     
 }
 
+.tag {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    margin: 0px;
+    font-size:13px;
+}
+
+.tag:hover{
+    color: skyblue;
+}
+
 
 /* Media query for smaller screens */
 @media (max-width: 490px) {
@@ -337,5 +349,9 @@ p {
 
     .button-custom {
         transform: scale(0.9); /* Scale down to 90% of original size */
+    }
+
+    .tag{
+        font-size:10px;
     }
 }
