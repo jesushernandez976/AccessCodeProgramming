@@ -6,10 +6,11 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lexend+Exa:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Shippori+Antique+B1&family=Space+Mono:wght@400&display=swap" rel="stylesheet"> <!-- Ensure font weight is specified -->
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Exa:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Shippori+Antique+B1&family=Space+Mono:wght@400&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Access Code Programming</title>
-
+</head>
+<body>
     <div class="video">
         <video autoplay muted loop playsinline>
             <source src="logooutput_prores-hevc-safari.mp4" type="video/mp4; codecs=hvc1">
@@ -17,34 +18,30 @@
             Your browser does not support the video tag, or the video format is not supported.
         </video>
     </div>
-    
+    <audio id="page-change-sound" src="audio/page-transition .mp3"></audio>
+    <audio id="hover-mode-sound" src="./audio/click2.mp3"></audio>
+    <audio id="click-mode-sound" src="./audio/click1t.mp3"></audio>
+
     <div class="words-container">
-        <a href="shop.html">
-        <button type="button" class="btn-custom">C0MING S00N</button>
+        <a href="#" id="shop-link"> <!-- Prevent default behavior, use JS to navigate -->
+            <button type="button" class="btn-custom">C0MING S00N</button>
         </a> 
-        
-        <div id="countdown">
-            <p id="timer">
-                <a href="index.html">000: 000: 000: 000</a>
-            </p>
+
+        <div class="night-mode">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sun" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z"/>
+                <path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
+                <path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7" />
+            </svg>
         </div>
-
-    <div class="night-mode">
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sun" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-            <path stroke="none" d="M0 0h24v24H0z"/>
-            <path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
-            <path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7" />
-          </svg>
+        <div class="day-mode dayMode">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-moon" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z"/>
+                <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+            </svg>
+        </div>
     </div>
-    <div class="day-mode dayMode">
-        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-moon" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-            <path stroke="none" d="M0 0h24v24H0z"/>
-            <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
-          </svg>
-    </div>
-
-
-   
+    <audio id="page-change-sound" src="./audio/page-transition.mp3"></audio> <!-- Add audio element -->
     <script src="app2.js"></script>
 </body>
 </html>

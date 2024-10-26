@@ -1,79 +1,68 @@
-// Set the target date to January 29, 2025 at midnight
-const targetDate = new Date('January 29, 2025 00:00:00').getTime();
+// Load sound effects
+var pageChangeSound = document.getElementById('page-change-sound');
+var hoverModeSound = document.getElementById('hover-mode-sound');
+var clickModeSound = document.getElementById('click-mode-sound');
 
-// Function to pad numbers with leading zeros
-function padNumber(number, digits) {
-    return String(number).padStart(digits, '0');
-}
-
-// Function to start the countdown
-function startCountdown() {
-    const timerElement = document.getElementById('timer');
-
-    const interval = setInterval(() => {
-        const currentDate = new Date().getTime();
-        const timeRemaining = targetDate - currentDate; // Time difference in milliseconds
-
-        if (timeRemaining <= 0) {
-            clearInterval(interval);
-            timerElement.textContent = "000: 000: 000: 000"; // Timer ended
-            return;
-        }
-
-        // Calculate days, hours, minutes, and seconds
-        const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
-
-        // Format the result with leading zeros
-        const formattedDays = padNumber(days, 3);   // Ensure days are in 000 format
-        const formattedHours = padNumber(hours, 3); // Ensure hours are in 000 format
-        const formattedMinutes = padNumber(minutes, 3); // Ensure minutes are in 000 format
-        const formattedSeconds = padNumber(seconds, 3); // Ensure seconds are in 000 format
-
-        // Display the result in the timer element
-        timerElement.textContent = `${formattedDays}: ${formattedHours}: ${formattedMinutes}: ${formattedSeconds}`;
-    }, 1000); // Update every second
-}
-
-// Start the countdown on page load
-startCountdown();
-
-// Sound for light and dark mode buttons
-var hoverModeSound = new Audio('./audio/click2.mp3');
-var clickModeSound = new Audio('./audio/click1t.mp3');
-
-// Set volume for light/dark mode sounds
+// Set volumes for sounds
+pageChangeSound.volume = 0.3; 
 hoverModeSound.volume = 0.2;
-clickModeSound.volume = 0.5;
+clickModeSound.volume = 0.2;
+
+// Flag to prevent hover sound when clicking
+let isClicked = false;
+
+// Function to play the page transition sound and navigate
+function playPageChangeSoundAndNavigate(url) {
+    // Reset the sound to start from the beginning
+    pageChangeSound.currentTime = 0; 
+
+    // Play the sound effect
+    pageChangeSound.play().then(() => {
+        // Add fade-out class to body for transition effect
+        document.body.classList.add('fade-out');
+
+        // Wait for the full duration of the sound before navigating
+        setTimeout(() => {
+            window.location.href = url; // Navigate to the new page
+        }, pageChangeSound.duration * 1000); // Sound duration in milliseconds
+    }).catch(error => {
+        console.error('Page change sound playback failed:', error);
+        window.location.href = url; // Fallback to navigate immediately if sound fails
+    });
+}
+
+// Attach event listener to the "C0MING S00N" button
+document.getElementById('shop-link').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default action
+    playPageChangeSoundAndNavigate('shop.html'); // Call the function to play sound and navigate
+});
 
 // Function to add hover sound
 function addHoverSound(element, hoverAudio) {
     element.addEventListener("mouseenter", function() {
-        hoverAudio.currentTime = 0;
-        hoverAudio.play().catch(error => {
-            console.error('Hover sound playback failed:', error);
-        });
+        if (!isClicked) { // Only play hover sound if not clicked
+            hoverAudio.currentTime = 0;
+            hoverAudio.play().catch(error => {
+                console.error('Hover sound playback failed:', error);
+            });
+        }
     });
 }
 
 // Function to add click sound with delay
 function addClickSound(element, clickAudio) {
-    let preventClickSound = false; // Flag to prevent immediate re-click
-
     element.addEventListener("click", function() {
-        if (!preventClickSound) {
-            clickAudio.currentTime = 0;
-            clickAudio.play().catch(error => {
-                console.error('Click sound playback failed:', error);
-            });
-            preventClickSound = true; // Set flag to prevent re-click
+        // Play click sound and set clicked flag
+        isClicked = true; // Set flag to prevent hover sound
+        clickAudio.currentTime = 0;
+        clickAudio.play().catch(error => {
+            console.error('Click sound playback failed:', error);
+        });
 
-            setTimeout(function() {
-                preventClickSound = false; // Reset flag after 200 ms
-            }, 200); // Delay before allowing another click
-        }
+        // Reset the clicked flag after 200 ms
+        setTimeout(function() {
+            isClicked = false; // Allow hover sound again after delay
+        }, 200); // Delay before allowing hover sound
     });
 }
 
@@ -100,8 +89,6 @@ dayMode.addEventListener("click", function() {
         document.body.style.background = "black"; // Change to night color
         nightMode.classList.remove("dayMode"); // Adjust class for night mode
         dayMode.classList.add("dayMode"); // Adjust class for day mode button
-        clickModeSound.currentTime = 0; // Reset sound
-        clickModeSound.play(); // Play click sound
     }
 });
 
@@ -111,8 +98,5 @@ nightMode.addEventListener("click", function() {
         document.body.style.background = "white"; // Change back to original color
         dayMode.classList.remove("dayMode"); // Adjust class for night mode button
         nightMode.classList.add("dayMode"); // Adjust class for day mode
-        clickModeSound.currentTime = 0; // Reset sound
-        clickModeSound.play(); // Play click sound
     }
 });
-

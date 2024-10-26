@@ -8,6 +8,12 @@ body {
     overflow: hidden;
 }
 
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+
 .video {
     display: flex;
     justify-content: center;
@@ -25,6 +31,10 @@ body {
 
 .video video:hover {
     transform: scale(1.32);
+}
+
+.video:target {
+    display: block; /* Optional if using anchors */
 }
 
 
@@ -185,43 +195,80 @@ p {
 }
 
 
-.sizes {
-    margin-top: 10px;
-    margin-bottom: 0px;
-    display: flex; /* Enables flexbox */
-    justify-content: center; /* Distributes the items evenly */
-    align-items: center; /* Centers the items vertically (optional) */
+.video-options {
+    display: flex;
+    justify-content: center; /* Center all items */
+    align-items: center; /* Align items vertically in the center */
+    margin-top: 10px; /* Adjust margin as needed */
 }
 
-.sizes div, .sizes p {
-    margin: 0 15px;
-    padding: 5px;
-    margin-top: 10px;
-      
+.video-options div {
+    margin: 0 5px; /* Reduce side margin */
 }
 
-.size-letter {
-    display: inline-block; /* Necessary for transform to work */
-    transition: transform 0.2s; /* Smooth transition */
-    font-size: 16px; /* Set a base font size (you can adjust this) */
-    font-family: 'Space Mono', sans-serif; /* Match the page font */
-    margin: 0 27px; /* Add margin between letters */
-    color: #4476b0; /* Match the text color of the page */
-    font-weight: 900; /* Match the font weight of the page */
-    cursor: pointer; 
-    text-decoration: none;
+.quantity,
+.size {
+    display: flex;
+    flex-direction: column; /* Stack label above input */
+    align-items: center; /* Center items */
+    margin: 0 5px; /* Reduce side margin */
 }
 
-.size-letter:hover {
-    transform: scale(1.61);
-    color: skyblue;
+.quantity label,
+.size label {
+    font-size: 0.9em;
     
 }
 
-.size-letter:hover{
-    text-decoration: none;
+.quantity input,
+.size select {
+    width: 50px; /* Compact width */
+    padding: 3px; /* Padding for input */
+    font-size: 0.9em; /* Font size for inputs */
+    background-color: transparent; /* Set to transparent */
+    border: 1px solid #4476b0; /* Border color */
+    border-radius: 5px; /* Round corners */
 }
 
+
+.quantity1 label,
+.size1 label,
+#quantity1,
+#size1,
+#addToCartButton1 {
+    color: #4476b0; /* Use the same color as your page */
+    font-weight: 900; /* Match the font weight */
+    font-family: 'Space Mono', sans-serif; /* Ensure consistent font family */
+}
+
+#quantity1,
+#size1 {
+    width: 50px; /* Compact width */
+    padding: 3px; /* Padding for input */
+    font-size: 0.9em; /* Font size for inputs */
+    backcolor-color: transparent;
+    border: 2px solid #4476b0; /* Optional: Add a border to match the theme */
+    border-radius: 5px; /* Optional: Round the corners */
+    background-color: transparent;
+
+}
+
+#addToCartButton1 {
+    padding: 3px; /* Adjust padding */
+    font-size: 0.9em; /* Font size for button */
+    cursor: pointer; /* Pointer cursor */
+    margin-left: 10px;
+    background-color: transparent; /* Ensure background matches the theme */
+    border: 2px solid #4476b0; /* Optional: Add border for styling */
+    border-radius: 5px;
+}
+
+#addToCartButton1:hover {
+    background-color: skyblue; /* Change background on hover */
+    color: white; /* Change text color on hover */
+    border: 2px solid skyblue;
+
+}
 
 
 
