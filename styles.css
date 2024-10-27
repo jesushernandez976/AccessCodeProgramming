@@ -294,7 +294,7 @@ p {
 
 .cart > .span1 {
     display: flex;
-    background-color: skyblue;
+    background-color: #4476b0;
     height: 20px;
     width: 20px;
     justify-content: center;
@@ -304,6 +304,10 @@ p {
 
 
 
+}
+
+.span1:hover {
+    background-color: skyblue;
 }
 
 .cart svg:hover {
@@ -368,7 +372,7 @@ body.showCart .cartTab{
     cursor: pointer;
 }
 
-.cartTab .btn .close {
+.cartTab .btn button:hover {
     background-color: skyblue;
 }
 
@@ -377,7 +381,7 @@ body.showCart .cartTab{
     margin-left: 10px;
 }
 
-.cartTab .listCart .item{
+.cartTab .listCart .item {
     display:grid;
     grid-template-columns: 70px 150px 50px 1fr;
     gap: 10px;
@@ -388,10 +392,10 @@ body.showCart .cartTab{
 
 .listCart .totalQuantity > span {
     display: inline-flex;
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
     background-color: white;
-    color: grey;
+    color: black;
     border-radius: 50%;
     cursor: pointer;
     justify-content: center;
@@ -463,5 +467,31 @@ body.showCart .cartTab{
 
     .tag{
         font-size:10px;
+    }
+    .cartTab {
+        width: 90vw; /* Set width to 90% of the viewport width */
+    }
+
+    /* Adjust grid layout in cart items to fit smaller screens */
+    .cartTab .listCart .item {
+        grid-template-columns: 50px 100px 40px 1fr; /* Reduce column sizes */
+        gap: 5px; /* Smaller gaps between items */
+    }
+
+    /* Adjust header and button font sizes */
+    .cartTab h1 {
+        font-size: 1.2rem; /* Smaller font size for header */
+        padding: 15px; /* Adjust padding for a tighter fit */
+    }
+
+    /* Adjust button sizes */
+    .cartTab .btn button {
+        padding: 8px; /* Smaller padding for buttons */
+        font-size: 0.9rem; /* Adjust font size */
+    }
+
+    /* Smaller font size in list items */
+    .listCart .item {
+        font-size: 0.9rem;
     }
 }
