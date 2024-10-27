@@ -188,12 +188,25 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.style.background = "black";
         dayMode.classList.add("dayMode");
         nightMode.classList.remove("dayMode");
+        cartElement.classList.add("left-white");
+        cartElement.classList.remove("left-black");
+        leftArrow.classList.add("left-white");
+        leftArrow.classList.remove("left-black");
+        rightArrow.classList.add("left-white");
+        rightArrow.classList.remove("left-black");
     });
 
     nightMode.addEventListener("click", function() {
         document.body.style.background = "white";
         nightMode.classList.add("dayMode");
         dayMode.classList.remove("dayMode");
+        cartElement.classList.remove("left-white");
+        cartElement.classList.add("left-black");
+        leftArrow.classList.add("left-black");
+        leftArrow.classList.remove("left-white");
+        rightArrow.classList.add("left-black");
+        rightArrow.classList.remove("left-white");
+       
     });
 
     // Animate dollar amount display

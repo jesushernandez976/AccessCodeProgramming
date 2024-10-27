@@ -96,6 +96,14 @@ p {
     index:2;
 }
 
+.left-white {
+    color: white;
+}
+
+.left-black {
+    color:black;
+}
+
 .left-arrow:active, .right-arrow:active {
     transform: scale(0.7); /* Slightly shrink the arrow when clicked */
 }
