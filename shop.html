@@ -11,9 +11,10 @@
 </head>
 <body>
 
-    <div class="cart">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M351.9 329.506H206.81l-3.072-12.56H368.16l26.63-116.019-217.23-26.04-9.952-58.09h-50.4v21.946h31.894l35.233 191.246a32.927 32.927 0 1 0 36.363 21.462h100.244a32.825 32.825 0 1 0 30.957-21.945zM181.427 197.45l186.51 22.358-17.258 75.195H198.917z" data-name="Shopping Cart"/></svg>        <div id="CART"></div>
+    <div class="cart" id="cart">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M351.9 329.506H206.81l-3.072-12.56H368.16l26.63-116.019-217.23-26.04-9.952-58.09h-50.4v21.946h31.894l35.233 191.246a32.927 32.927 0 1 0 36.363 21.462h100.244a32.825 32.825 0 1 0 30.957-21.945zM181.427 197.45l186.51 22.358-17.258 75.195H198.917z" data-name="Shopping Cart"/></svg>        <div id="CART"></div>
         <div id="total"></div>
+        <span class="span1">0</span>
     </div>
 
 
@@ -61,6 +62,7 @@
     </div>
 
     <!-- Dynamic Video Title -->
+    <div class="container2">
     <p class="pvid1">BLUE & WHITE ACP 001</p>
 
     <!-- Price Display -->
@@ -68,8 +70,7 @@
 
     <!-- Sizes for Videos (same class, different links set by JS) -->
     <div class="product-container">
-            <div class="product active" data-id="1" data-name="White and Blue ACP 001" 
-            data-price="55" id="product1" style= "display: block;">
+            <div class="product active" id="product1" style= "display: block;">
                 <div class="video-options">
                     <div class="quantity">
                         <label for="quantity1"></label>
@@ -130,7 +131,36 @@
             </div>
     </div>
 
-    <!-- Night and Day Mode Toggles -->
+     </div>
+
+    <div class="cartTab">
+        <h1>Shopping Cart</h1>
+    
+        <div class="listCart">
+            <div class="item">
+                <div class="image">
+                    <video autoplay muted loop playsinline>
+                        <source src="whiteoutput_prores-hevc-safari.mp4" type="video/mp4; codecs=hvc1">
+                        <source src="output3.webm" type="video/webm">
+                        Your browser does not support the video tag, or the video format is not supported.
+                    </video>
+                </div>
+                <div class="name">Product Name</div>
+                <div class="price">$10</div>
+                <div class="totalQuantity">
+                    <span class="minus">-</span>
+                    <span>1</span>
+                    <span class="plus">+</span>
+                </div>
+            </div>
+        </div>
+    
+        <div class="btn">
+            <button class="close">CLOSE</button>
+            <button class="checkOut">CHECK OUT</button>
+        </div>
+    </div>
+    
     <div class="night-mode">
         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sun" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z"/>
@@ -147,6 +177,7 @@
 
     <p class="tag">© 2025 [ACP]</p>
     <!-- External JavaScript file -->
+     <script src="products.js"></script>
     <script src="app.js"></script>
 </body>
 </html>

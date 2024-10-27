@@ -153,7 +153,7 @@ p {
 }
 
 .night-mode {
-    position: absolute;
+    position: fixed;
     right: 20px;
     bottom: 10px;
     cursor: pointer;
@@ -172,7 +172,7 @@ p {
 .openDayMode {}
 
 .day-mode {
-    position: absolute;
+    position: fixed;
     right: 20px;
     bottom: 10px;
     cursor: pointer;
@@ -283,13 +283,26 @@ p {
     color: skyblue;
 }
 
-.cart svg{
-    position: absolute;
+.cart svg, .span1{
+    position: fixed;
     height: 40px;
     top: 10px;
     right: 15px;
     cursor: pointer;
-    z-index: 4;
+    z-index: 3;
+}
+
+.cart > .span1 {
+    display: flex;
+    background-color: skyblue;
+    height: 20px;
+    width: 20px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color: black;
+
+
 
 }
 
@@ -312,7 +325,95 @@ p {
     color: skyblue;
 }
 
+.cartTab{
+    width: 500px;
+    background-color: black;
+    color: white;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99;
+    inset: 0 -500px 0 auto;
+    display: grid;
+    grid-template-rows: 70px 1fr 70px;
+    transform: translateX(100%); /* Move it off-screen */
+    transition: transform 0.5s ease; /* Smooth transition */
 
+}
+
+body.showCart .cartTab{
+    inset: 0 0 0 auto;
+    transform: translateX(0); /* Bring it into view */
+
+
+}
+
+
+.cartTab h1{
+    padding: 20px;
+    margin: 0;
+}
+
+.cartTab > .btn {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.cartTab .btn button {
+    background-color: #4476b0;
+    border: none;
+    font-weight: 900; 
+    font-family: 'Space Mono', sans-serif;
+    cursor: pointer;
+}
+
+.cartTab .btn .close {
+    background-color: skyblue;
+}
+
+.cartTab .listCart .item video {
+    width: 100%;
+    margin-left: 10px;
+}
+
+.cartTab .listCart .item{
+    display:grid;
+    grid-template-columns: 70px 150px 50px 1fr;
+    gap: 10px;
+    text-align: center;
+    align-items: center; 
+}
+
+
+.listCart .totalQuantity > span {
+    display: inline-flex;
+    width: 25px;
+    height: 25px;
+    background-color: white;
+    color: grey;
+    border-radius: 50%;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+}
+
+.listCart .totalQuantity > span:nth-child(2) {
+    background-color: transparent;
+    color: white;
+}
+
+.listCart .item:nth-child(even){
+    background-color: light-grey; 
+}
+
+.listCart {
+    overflow: auto; 
+}
+
+.listCart::-webkit-scrollbar{
+    width: 0;
+}
 
 /* Media query for smaller screens */
 @media (max-width: 490px) {

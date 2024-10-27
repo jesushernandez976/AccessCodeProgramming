@@ -10,6 +10,11 @@ document.addEventListener('DOMContentLoaded', function() {
     var titleElement = document.querySelector('.pvid1');
     var sizeLetters = document.querySelectorAll('.size-letter');
     var cartElement = document.querySelector(".cart");
+    var iconCart = document.querySelector("#cart");
+    var body = document.querySelector("body");
+    var closeCart = document.querySelector(".close");
+    var cartTab = document.querySelector("cartTab");
+    var productsE1 = document.querySelector(".products")
 
     // Titles and size links
     var titles = [
@@ -17,12 +22,6 @@ document.addEventListener('DOMContentLoaded', function() {
         "BLACK AND BLUE ACP 001",
         "BLUE AND WHITE ACP 001"
     ];
-    var sizeLinks = [
-        { S: "page1.html", M: "page2.html", L: "page3.html", XL: "page4.html" },
-        { S: "page5.html", M: "page6.html", L: "page7.html", XL: "page8.html" },
-        { S: "page9.html", M: "page10.html", L: "page11.html", XL: "page12.html" }
-    ];
-
     // Sound effects
     var hoverSound = new Audio('./audio/click2.mp3');
     var clickSound = new Audio('./audio/click1t.mp3');
@@ -85,12 +84,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Add to Cart Functionality
-    function addToCart(product) {
-        console.log(`Added ${product} to the cart.`); // Debugging log
-        // You can implement your cart logic here
-    }
-
+    
+    
     initAudio();
     addHoverSound(leftArrow, hoverSound);
     addHoverSound(rightArrow, hoverSound);
@@ -112,6 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
             window.location.href = url;
         });
     }
+
 
     // Function to attach sounds to size and quantity elements
     function attachCartAndQuantitySounds() {
@@ -184,6 +180,8 @@ document.addEventListener('DOMContentLoaded', function() {
         updateContent(currentVideoIndex);
     });
 
+    
+
     dayMode.addEventListener("click", function() {
         document.body.style.background = "black";
         dayMode.classList.add("dayMode");
@@ -228,4 +226,20 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     animateDollarAmount(55, 1500);
+
+    
+
+    iconCart.addEventListener('click', () => {
+        body.classList.toggle('showCart')
+
+    });
+    closeCart.addEventListener('click', () => {
+        body.classList.toggle('showCart');
+    });
+
+
+
+
+
+
 });

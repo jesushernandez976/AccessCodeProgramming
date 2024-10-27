@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "White and Blue ACP 001",
+        "price": 55,
+        "sizes": ["S", "M", "L", "XL"],
+        "video": "output3.webm",
+        "quantity": 0
+    },
+    {
+        "id": 2,
+        "name": "Black and Blue ACP 002",
+        "price": 55,
+        "sizes": ["S", "M", "L", "XL"],
+        "video": "output2.webm",
+        "quantity": 0
+    },
+    {
+        "id": 3,
+        "name": "Blue and White ACP 003",
+        "price": 55,
+        "sizes": ["S", "M", "L", "XL"],
+        "video": "blue no black.webm",
+        "quantity": 0
+    }
+]
