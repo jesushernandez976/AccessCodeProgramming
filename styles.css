@@ -318,14 +318,15 @@ p {
 }
 
 .tag {
-    position: absolute;
+    position: fixed;
     bottom: 10px;
     left: 10px;
     margin: 0px;
-    font-size:13px;
+    font-size: 12px;
+    text-align: left; /* Aligns content to the left */
 }
 
-.tag:hover{
+.tag:hover {
     color: skyblue;
 }
 
@@ -466,7 +467,7 @@ body.showCart .cartTab{
     }
 
     .tag{
-        font-size:10px;
+        font-size:8px;
     }
     .cartTab {
         width: 90vw; /* Set width to 90% of the viewport width */
