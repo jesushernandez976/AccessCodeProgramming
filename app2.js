@@ -39,14 +39,20 @@ document.getElementById('shop-link').addEventListener('click', function(event) {
 
 // Function to add hover sound
 function addHoverSound(element, hoverAudio) {
-    element.addEventListener("mouseenter", function() {
-        if (!isClicked) { // Only play hover sound if not clicked
-            hoverAudio.currentTime = 0;
-            hoverAudio.play().catch(error => {
-                console.error('Hover sound playback failed:', error);
-            });
-        }
-    });
+    // Check window width and decide whether to play the hover sound
+    if (window.innerWidth > 400) {
+        element.addEventListener("mouseenter", function() {
+            if (!isClicked) { // Only play hover sound if not clicked
+                hoverAudio.currentTime = 0;
+                hoverAudio.play().catch(error => {
+                    console.error('Hover sound playback failed:', error);
+                });
+            }
+        });
+    } else {
+        // If the window is 400px or less, don't add the hover sound event
+        element.removeEventListener("mouseenter", function() {});
+    }
 }
 
 // Function to add click sound with delay
@@ -99,4 +105,11 @@ nightMode.addEventListener("click", function() {
         dayMode.classList.remove("dayMode"); // Adjust class for night mode button
         nightMode.classList.add("dayMode"); // Adjust class for day mode
     }
+});
+
+// Add resize event listener to adjust hover sound logic
+window.addEventListener('resize', function() {
+    // Reapply hover sounds based on window width
+    addHoverSound(dayMode, hoverModeSound);
+    addHoverSound(nightMode, hoverModeSound);
 });
