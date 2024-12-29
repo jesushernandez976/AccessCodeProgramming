@@ -15,6 +15,9 @@ document.addEventListener('DOMContentLoaded', function() {
     var closeCart = document.querySelector(".close");
     var cartTab = document.querySelector("cartTab");
     var productsE1 = document.querySelector(".products")
+    var blkVideo = document.querySelector(".blk");
+    var whtVideo = document.querySelector(".wht");
+    var homeLogo = document.querySelector(".homeLogo");
 
     // Titles and size links
     var titles = [
@@ -97,6 +100,12 @@ document.addEventListener('DOMContentLoaded', function() {
     addClickSound(dayMode, clickModeSound);
     addClickSound(nightMode, clickModeSound);
 
+
+    if (homeLogo) {
+        addHoverSound(homeLogo, hoverSound);
+        addClickSound(homeLogo, clickSound);
+    }
+
     // Play page change sound and navigate
     function playPageChangeSoundAndNavigate(url) {
         pageChangeSound.currentTime = 0;
@@ -107,6 +116,8 @@ document.addEventListener('DOMContentLoaded', function() {
             window.location.href = url;
         });
     }
+
+    
 
 
     // Function to attach sounds to size and quantity elements
@@ -192,6 +203,10 @@ document.addEventListener('DOMContentLoaded', function() {
         leftArrow.classList.remove("left-black");
         rightArrow.classList.add("left-white");
         rightArrow.classList.remove("left-black");
+        blkVideo.classList.add("dayMode");
+        whtVideo.classList.remove("dayMode");
+
+
     });
 
     nightMode.addEventListener("click", function() {
@@ -204,6 +219,8 @@ document.addEventListener('DOMContentLoaded', function() {
         leftArrow.classList.remove("left-white");
         rightArrow.classList.add("left-black");
         rightArrow.classList.remove("left-white");
+        blkVideo.classList.remove("dayMode");
+        whtVideo.classList.add("dayMode");
        
     });
 

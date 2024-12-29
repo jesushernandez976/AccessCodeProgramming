@@ -4,7 +4,6 @@ body {
     padding: 0;
     font-family: 'Space Mono', sans-serif;
     height: 100vh;
-    transition: background .25s ease;
     overflow: hidden;
 }
 
@@ -424,6 +423,31 @@ body.showCart .cartTab{
     width: 0;
 }
 
+.homeLogo {
+    display:flex;
+    position: fixed;
+    top: 10px;
+    left: 15px;
+    height: 8.5%;
+    cursor: pointer;
+    
+}
+
+.homeLogo:hover {
+    transition: stroke 0.3s; /* Smooth transition effect */
+    transform: scale(1.20)
+
+}
+
+.wht {
+    
+    
+}
+
+.blk {
+    
+}
+
 /* Media query for smaller screens */
 @media (max-width: 490px) {
     .container {
@@ -499,4 +523,8 @@ body.showCart .cartTab{
     .listCart .item {
         font-size: 0.9rem;
     }
+
+    .homeLogo {
+        left: 5px;
+        height: 6.5%;
 }
