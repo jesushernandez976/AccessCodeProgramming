@@ -439,14 +439,51 @@ body.showCart .cartTab{
 
 }
 
-.wht {
-    
-    
+.words-container {
+    display: flex;
+    justify-content: center; /* Center items vertically */
+    align-items: center; /* Center items horizontally */
+    text-align: center; /* Center the text */
+    gap: 30px;
 }
 
-.blk {
-    
+.words-container > * {
+    margin: 0; /* Remove default margins from child elements */
+    padding-top: 20px; /* Remove default padding from child elements */
+    padding-bottom: 0px; /* Remove default padding from child elements */
 }
+
+.cs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.about {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 0px 40px 40px 40px;
+    margin:0;
+
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin:0;
+
+}
+
+.highlight {
+    background-color:rgb(47, 129, 224); /* Highlight color */
+    color: white; /* Text color (optional) */
+    padding: 2px 4px; /* Optional for better spacing */
+  }
 
 /* Media query for smaller screens */
 @media (max-width: 490px) {
@@ -495,7 +532,7 @@ body.showCart .cartTab{
     }
 
     .tag{
-        font-size:6px;
+        font-size:5.5px;
     }
     .cartTab {
         width: 90vw; /* Set width to 90% of the viewport width */
@@ -527,4 +564,16 @@ body.showCart .cartTab{
     .homeLogo {
         left: 5px;
         height: 6.5%;
+    }
+
+    .words-container {
+        font-size: 13px;
+    }
+
+    .about p {
+        height: 70%;
+        font-size: 9px;
+    }
+
+
 }

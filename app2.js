@@ -2,6 +2,9 @@
 var pageChangeSound = document.getElementById('page-change-sound');
 var hoverModeSound = document.getElementById('hover-mode-sound');
 var clickModeSound = document.getElementById('click-mode-sound');
+var blkVideo = document.querySelector(".blk");
+var whtVideo = document.querySelector(".wht");
+var homeLogo = document.querySelector(".homeLogo");
 
 // Set volumes for sounds
 pageChangeSound.volume = 0.3; 
@@ -94,7 +97,10 @@ dayMode.addEventListener("click", function() {
         // Switch to night mode
         document.body.style.background = "black"; // Change to night color
         nightMode.classList.remove("dayMode"); // Adjust class for night mode
-        dayMode.classList.add("dayMode"); // Adjust class for day mode button
+        dayMode.classList.add("dayMode"); 
+        blkVideo.classList.add("dayMode");
+        whtVideo.classList.remove("dayMode");
+       
     }
 });
 
@@ -104,6 +110,8 @@ nightMode.addEventListener("click", function() {
         document.body.style.background = "white"; // Change back to original color
         dayMode.classList.remove("dayMode"); // Adjust class for night mode button
         nightMode.classList.add("dayMode"); // Adjust class for day mode
+        blkVideo.classList.remove("dayMode");
+        whtVideo.classList.add("dayMode");
     }
 });
 
@@ -112,4 +120,34 @@ window.addEventListener('resize', function() {
     // Reapply hover sounds based on window width
     addHoverSound(dayMode, hoverModeSound);
     addHoverSound(nightMode, hoverModeSound);
+});
+
+// Typing text effect for the "about" paragraph
+document.addEventListener("DOMContentLoaded", () => {
+    const textElement = document.querySelector(".about p");
+    const text = textElement.textContent; // Get the original text
+    const speed = 30; // Typing speed in milliseconds
+    let index = 0;
+
+    // Clear the text content for the typing effect
+    textElement.textContent = "";
+
+    // Add a cursor to simulate typing
+    const cursor = document.createElement("span");
+    cursor.classList.add("cursor");
+    textElement.appendChild(cursor);
+
+    // Typing effect function
+    function typeText() {
+        if (index < text.length) {
+            textElement.textContent = text.slice(0, index + 1);
+            index++;
+            setTimeout(typeText, speed);
+        } else {
+            cursor.remove(); // Remove the cursor after typing completes
+        }
+    }
+
+    // Start the typing effect
+    typeText();
 });
